@@ -8,7 +8,7 @@ const urlFor = (source) => builder.image(source);
 
 export default function Research() {
   const [researchItems, setResearchItems] = useState([]);
-  const [selectedItem, setSelectedItem] = useState(null); // ✅ You missed this
+  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     client
@@ -25,6 +25,11 @@ export default function Research() {
       .then((data) => setResearchItems(data))
       .catch(console.error);
   }, []);
+
+  // ✅ Don’t render if no data
+  if (researchItems.length === 0) {
+    return null;
+  }
 
   return (
     <div id="research" className="section lb">
@@ -63,8 +68,6 @@ export default function Research() {
                 </div>
               ))}
 
-              {researchItems.length === 0 && <p>No research items found.</p>}
-
               {/* Modal */}
               <ResearchModal
                 show={!!selectedItem}
@@ -78,3 +81,4 @@ export default function Research() {
     </div>
   );
 }
+

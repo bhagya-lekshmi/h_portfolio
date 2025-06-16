@@ -2,7 +2,7 @@ import Logo from './Logo';
 import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 
-export default function Navigations() {
+export default function Navigations({ showResearch, showTestimonials, showBlog, showGallery }) {
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -45,18 +45,26 @@ export default function Navigations() {
             <li className="nav-item">
               <button className="nav-link btn btn-link" onClick={() => scrollToSection('academics')}>Academics</button>
             </li>
-            <li className="nav-item">
-              <button className="nav-link btn btn-link" onClick={() => scrollToSection('research')}>Research</button>
-            </li>
-            <li className="nav-item">
-              <button className="nav-link btn btn-link" onClick={() => scrollToSection('testimonials')}>Testimonials</button>
-            </li>
-            <li className="nav-item">
-              <button className="nav-link btn btn-link" onClick={() => scrollToSection('blog')}>Blog</button>
-            </li>
-            <li className="nav-item">
-              <button className="nav-link btn btn-link" onClick={() => scrollToSection('gallery')}>Gallery</button>
-            </li>
+            {showResearch && (
+              <li className="nav-item">
+                <button className="nav-link btn btn-link" onClick={() => scrollToSection('research')}>Research</button>
+              </li>
+            )}
+            {showTestimonials && (
+              <li className="nav-item">
+                <button className="nav-link btn btn-link" onClick={() => scrollToSection('testimonials')}>Testimonials</button>
+              </li>
+            )}
+            {showBlog && (
+              <li className="nav-item">
+                <button className="nav-link btn btn-link" onClick={() => scrollToSection('blog')}>Blog</button>
+              </li>
+            )}
+            {showGallery && (
+              <li className="nav-item">
+                <button className="nav-link btn btn-link" onClick={() => scrollToSection('gallery')}>Gallery</button>
+              </li>
+            )}
             <li className="nav-item">
               <button className="nav-link btn btn-link" onClick={() => scrollToSection('contact')}>Contact</button>
             </li>
@@ -66,3 +74,5 @@ export default function Navigations() {
     </nav>
   );
 }
+
+
