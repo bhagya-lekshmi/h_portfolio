@@ -1,4 +1,4 @@
-import bannerImage from '/uploads/h_banner3.jpg';
+import bannerImage from '/uploads/h_bnr2.jpg';
 
 export default function Home() {
     return (

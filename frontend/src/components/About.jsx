@@ -1,24 +1,47 @@
-export default function About() {
-    return (
-        <div id="about" className="section wb">
-        <div className="container">
-            <div className="row">
-                <div className="col-md-6">
-                    <div className="message-box">                        
-                        <h2>About Me</h2>
-                        <p> Assistant Professor at Christ (Deemed to be University) | Deep Learning & Video Compression Specialist | Green AI 
-                        I hold a Ph.D. from Reva University, specializing in deep learning-based video compression. As an assistant professor at Christ (Deemed to be) University, I enhance multimedia data storage and transmission through innovative AI techniques. Passionate about Green AI and leveraging AI for women and child mental health development, I am dedicated to mentoring future researchers and advancing sustainable, impactful AI technologies.</p>
-                        <a href="#" className="sim-btn btn-hover-new" data-text="Download CV"><span>Download CV</span></a>
-                    </div>
-                </div>
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { client } from '../client';
+import imageUrlBuilder from '@sanity/image-url';
 
-                <div className="col-md-6">
-                    <div className="right-box-pro wow fadeIn">
-                        <img src="uploads/about_h2.jpg" alt="" className="img-fluid img-rounded"/>
-                    </div>
-                </div>
+const builder = imageUrlBuilder(client);
+const urlFor = (source) => builder.image(source);
+
+const About = () => {
+  const [abouts, setAbouts] = useState([]);
+
+  useEffect(() => {
+    const query = '*[_type == "about"]';
+    client.fetch(query).then((data) => {
+      setAbouts(data);
+    });
+  }, []);
+
+  return (
+    <div id="about" className="section wb">
+      <div className="container">
+        {abouts.map((about, index) => (
+          <div className="row" key={index}>
+            <div className="col-md-6">
+              <div className="message-box">
+                <h2>About Me</h2>
+                <p>{about.description}</p>
+              </div>
             </div>
-        </div>
+
+            <div className="col-md-6">
+              <div className="right-box-pro wow fadeIn">
+                <img
+                  src={urlFor(about.imgUrl)}
+                  alt="About"
+                  className="img-fluid img-rounded"
+                />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
-    );
-    }
+  );
+};
+
+export default About;

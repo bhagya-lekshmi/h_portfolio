@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+
 // import './App.css'
 import Navigations from './components/Navigations.jsx'
 import Home from './components/Home.jsx'
@@ -24,6 +27,7 @@ function App() {
     <Gallery></Gallery>
     <Contact></Contact>
     </>
+
 
   )
 }
