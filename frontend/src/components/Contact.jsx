@@ -11,48 +11,82 @@ export default function Contact() {
 
   const [loading, setLoading] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
+  const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
-  // Update form data on input change
+  // Validate form fields
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Invalid email format';
+    }
+    if (!formData.phone.trim()) newErrors.phone = 'Phone is required';
+    if (!formData.message.trim()) newErrors.message = 'Message is required';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [id]: value,
     }));
+    // Clear error for the field being edited
+    setErrors((prev) => ({ ...prev, [id]: '' }));
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setLoading(true);
-  setResponseMessage('');
+    e.preventDefault();
 
-  try {
-    const doc = {
-      _type: 'contact',
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      message: formData.message,
-    };
+    if (!validateForm()) {
+      setResponseMessage('Please correct the errors in the form.');
+      return;
+    }
 
-    await client.create(doc);
-    setResponseMessage('Success! Your message has been submitted.');
-    setLoading(false);
-    setSubmitted(true);
-  } catch (error) {
-    console.error(error);
-    setResponseMessage('There was an error submitting the form.');
-    setLoading(false);
-  }
-};
+    setLoading(true);
+    setResponseMessage('');
 
+    try {
+      const doc = {
+        _type: 'contact',
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        message: formData.message.trim(),
+      };
+
+      await client.create(doc);
+      setResponseMessage('Success! Your message has been submitted.');
+      setLoading(false);
+      setSubmitted(true);
+      // Reset form
+      setFormData({ name: '', email: '', phone: '', message: '' });
+    } catch (error) {
+      console.error('Submission error:', error);
+      setResponseMessage('Failed to submit the form. Please try again.');
+      setLoading(false);
+    }
+  };
+
+  const handleReset = () => {
+    setSubmitted(false);
+    setResponseMessage('');
+    setErrors({});
+  };
 
   if (submitted) {
     return (
       <div id="contact" className="section db">
         <div className="container">
           <h3>Thank you! Your message has been sent.</h3>
+          <button className="sim-btn btn-hover-new" onClick={handleReset}>
+            Submit Another Message
+          </button>
         </div>
       </div>
     );
@@ -63,15 +97,20 @@ export default function Contact() {
       <div className="container">
         <div className="section-title text-left">
           <h3>Contact</h3>
-          <p>
-          </p>
+          {/* <p>Get in touch with us using the form below.</p> */}
         </div>
 
         <div className="row">
           <div className="col-md-12">
             <div className="contact_form">
               {responseMessage && (
-                <div id="message" style={{ marginBottom: '15px' }}>
+                <div
+                  id="message"
+                  style={{
+                    marginBottom: '15px',
+                    color: responseMessage.includes('Success') ? 'green' : 'red',
+                  }}
+                >
                   {responseMessage}
                 </div>
               )}
@@ -89,7 +128,7 @@ export default function Contact() {
                         value={formData.name}
                         onChange={handleChange}
                       />
-                      <p className="help-block text-danger"></p>
+                      {errors.name && <p className="help-block text-danger">{errors.name}</p>}
                     </div>
                     <div className="form-group">
                       <input
@@ -101,7 +140,7 @@ export default function Contact() {
                         value={formData.email}
                         onChange={handleChange}
                       />
-                      <p className="help-block text-danger"></p>
+                      {errors.email && <p className="help-block text-danger">{errors.email}</p>}
                     </div>
                     <div className="form-group">
                       <input
@@ -113,7 +152,7 @@ export default function Contact() {
                         value={formData.phone}
                         onChange={handleChange}
                       />
-                      <p className="help-block text-danger"></p>
+                      {errors.phone && <p className="help-block text-danger">{errors.phone}</p>}
                     </div>
                   </div>
 
@@ -127,18 +166,16 @@ export default function Contact() {
                         value={formData.message}
                         onChange={handleChange}
                       ></textarea>
-                      <p className="help-block text-danger"></p>
+                      {errors.message && <p className="help-block text-danger">{errors.message}</p>}
                     </div>
                   </div>
 
                   <div className="clearfix"></div>
 
                   <div className="col-lg-12 text-center">
-                    <div id="success"></div>
                     <button
                       id="sendMessageButton"
                       className="sim-btn btn-hover-new"
-                      data-text="Send Message"
                       type="submit"
                       disabled={loading}
                     >

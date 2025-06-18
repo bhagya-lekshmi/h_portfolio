@@ -9,7 +9,19 @@ export default {
     { name: 'country', title: 'Country', type: 'string' },
     { name: 'date', title: 'Date', type: 'string' },
     { name: 'description', title: 'Description', type: 'text' },
-    { name: 'image', title: 'Image', type: 'image', options: { hotspot: true } },
+{
+  name: 'image',
+  title: 'Image',
+  type: 'image',
+  options: { hotspot: true },
+  fields: [
+    {
+      name: 'progress',
+      type: 'number',
+      readOnly: true,
+    }
+  ]
+},
     { name: 'slug', title: 'Slug', type: 'slug', options: { source: 'title', maxLength: 96 } }
   ]
 }
