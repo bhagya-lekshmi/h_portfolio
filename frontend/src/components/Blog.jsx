@@ -20,7 +20,7 @@ export default function Blog() {
         <div id="blog" className="section lb">
 		<div className="container">
 			<div className="section-title text-left">
-                <h3>Blog</h3>
+                <h3>Pulse</h3>
                 <p>Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus.</p>
             </div>
 			

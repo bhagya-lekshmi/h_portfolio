@@ -96,11 +96,11 @@ const Gallery = ({ setShowGallery }) => {
         <div className="gallery-menu row">
           <div className="col-md-12">
             <div className="button-group filter-button-group text-left">
-              <button className={filterKey === 'all' ? 'active' : ''} onClick={() => setFilterKey('all')}>All</button>
-              <button className={filterKey === 'career' ? 'active' : ''} onClick={() => setFilterKey('career')}>Career</button>
-              <button className={filterKey === 'travel' ? 'active' : ''} onClick={() => setFilterKey('travel')}>Travel</button>
-              <button className={filterKey === 'hobbies' ? 'active' : ''} onClick={() => setFilterKey('hobbies')}>Hobbies</button>
-              <button className={filterKey === 'misc' ? 'active' : ''} onClick={() => setFilterKey('misc')}>Misc</button>
+              <button className={filterKey === 'all' ? 'active' : ''} onClick={() => setFilterKey('all')}>Every Shot</button>
+              <button className={filterKey === 'career' ? 'active' : ''} onClick={() => setFilterKey('career')}>Work Vibe</button>
+              <button className={filterKey === 'travel' ? 'active' : ''} onClick={() => setFilterKey('travel')}>Miles & Moments</button>
+              <button className={filterKey === 'hobbies' ? 'active' : ''} onClick={() => setFilterKey('hobbies')}>Off Hours</button>
+              <button className={filterKey === 'misc' ? 'active' : ''} onClick={() => setFilterKey('misc')}>Bits & Pieces</button>
             </div>
           </div>
         </div>

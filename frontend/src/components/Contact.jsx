@@ -93,7 +93,7 @@ export default function Contact() {
   }
 
   return (
-    <div id="contact" className="section db">
+    <div id="contact" className="section db full-height">
       <div className="container">
         <div className="section-title text-left">
           <h3>Contact</h3>

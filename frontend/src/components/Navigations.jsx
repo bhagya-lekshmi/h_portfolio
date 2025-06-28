@@ -1,11 +1,14 @@
-import Logo from './Logo';
-import { NavLink } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Navigations({ showResearch, showTestimonials, showBlog, showGallery }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+      setMenuOpen(false); // close menu on click
+    }
   };
 
   useEffect(() => {
@@ -26,15 +29,21 @@ export default function Navigations({ showResearch, showTestimonials, showBlog, 
     <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div className="container">
         <a className="navbar-brand" href="#" onClick={() => scrollToSection('home')}>
-          <Logo />
+          <img
+            className="img-fluid"
+            src="/hkj.png"
+            alt="Logo"
+            style={{ width: '70px', height: '70px' }}
+          />
         </a>
-        <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-          data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-          aria-label="Toggle navigation">
-          Menu
-          <i className="fa fa-bars"></i>
+        <button
+          className="navbar-toggler"
+          type="button"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+        <i className="fa fa-bars ml-1"></i>
         </button>
-        <div className="collapse navbar-collapse" id="navbarResponsive">
+        <div className={`collapse navbar-collapse ${menuOpen ? 'show' : ''}`} id="navbarResponsive">
           <ul className="navbar-nav text-uppercase ml-auto">
             <li className="nav-item">
               <button className="nav-link btn btn-link" onClick={() => scrollToSection('home')}>Home</button>
@@ -57,7 +66,7 @@ export default function Navigations({ showResearch, showTestimonials, showBlog, 
             )}
             {showBlog && (
               <li className="nav-item">
-                <button className="nav-link btn btn-link" onClick={() => scrollToSection('blog')}>Blog</button>
+                <button className="nav-link btn btn-link" onClick={() => scrollToSection('blog')}>Pulse</button>
               </li>
             )}
             {showGallery && (
@@ -74,5 +83,3 @@ export default function Navigations({ showResearch, showTestimonials, showBlog, 
     </nav>
   );
 }
-
-

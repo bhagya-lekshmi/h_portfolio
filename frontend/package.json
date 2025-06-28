@@ -12,7 +12,7 @@
   "dependencies": {
     "@sanity/client": "^7.3.0",
     "@sanity/image-url": "^1.1.0",
-    "bootstrap": "^5.3.6",
+    "bootstrap": "^5.3.7",
     "bootstrap-icons": "^1.13.1",
     "framer-motion": "^12.12.2",
     "isotope-layout": "^3.0.6",
