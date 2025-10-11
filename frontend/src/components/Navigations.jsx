@@ -7,20 +7,16 @@ export default function Navigations({ showResearch, showTestimonials, showBlog, 
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
-      setMenuOpen(false); // close menu on click
+      setMenuOpen(false);
     }
   };
 
   useEffect(() => {
     const handleScroll = () => {
       const nav = document.getElementById('mainNav');
-      if (window.scrollY > 50) {
-        nav.classList.add('navbar-shrink');
-      } else {
-        nav.classList.remove('navbar-shrink');
-      }
+      if (window.scrollY > 50) nav.classList.add('navbar-shrink');
+      else nav.classList.remove('navbar-shrink');
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -28,23 +24,21 @@ export default function Navigations({ showResearch, showTestimonials, showBlog, 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div className="container">
+
+        {/* Left: Logo */}
         <a className="navbar-brand" href="#" onClick={() => scrollToSection('home')}>
-          <img
-            className="img-fluid"
-            src="/hkj.png"
-            alt="Logo"
-            style={{ width: '70px', height: '70px' }}
-          />
+          <img className="img-fluid" src="/hkj.png" alt="Logo" style={{ width: 70, height: 70 }} />
         </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-        <i className="fa fa-bars ml-1"></i>
+
+        {/* Toggler */}
+        <button className="navbar-toggler" type="button" onClick={() => setMenuOpen(!menuOpen)}>
+          <i className="fa-solid fa-bars ms-1"></i>
         </button>
+
+        {/* Collapse */}
         <div className={`collapse navbar-collapse ${menuOpen ? 'show' : ''}`} id="navbarResponsive">
-          <ul className="navbar-nav text-uppercase ml-auto">
+          {/* MAIN MENU — stays left because of me-auto */}
+          <ul className="navbar-nav text-uppercase me-auto">
             <li className="nav-item">
               <button className="nav-link btn btn-link" onClick={() => scrollToSection('home')}>Home</button>
             </li>
@@ -78,6 +72,22 @@ export default function Navigations({ showResearch, showTestimonials, showBlog, 
               <button className="nav-link btn btn-link" onClick={() => scrollToSection('contact')}>Contact</button>
             </li>
           </ul>
+
+          <ul className="navbar-nav ms-auto align-items-center"> {/* BS5: ms-auto pushes right */}
+            <li className="nav-item">
+              <a
+                href="https://www.linkedin.com/in/YOUR-LINKEDIN-ID/"
+                className="li-cta"
+                aria-label="Open LinkedIn profile"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Connect on LinkedIn"
+              >
+                <i className="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
+
         </div>
       </div>
     </nav>
