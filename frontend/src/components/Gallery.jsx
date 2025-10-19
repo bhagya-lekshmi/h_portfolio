@@ -93,7 +93,7 @@ const Gallery = ({ setShowGallery }) => {
           <h3>Gallery</h3>
         </div>
 
-        <div className="gallery-menu row">
+        {/* <div className="gallery-menu row">
           <div className="col-md-12">
             <div className="button-group filter-button-group text-left">
               <button className={filterKey === 'all' ? 'active' : ''} onClick={() => setFilterKey('all')}>Every Shot</button>
@@ -103,7 +103,7 @@ const Gallery = ({ setShowGallery }) => {
               <button className={filterKey === 'misc' ? 'active' : ''} onClick={() => setFilterKey('misc')}>Bits & Pieces</button>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="gallery-list row">
           {filteredItems.map((item) => (

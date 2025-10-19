@@ -69,6 +69,9 @@ export default function Navigations({ showResearch, showTestimonials, showBlog, 
               </li>
             )}
             <li className="nav-item">
+              <button className="nav-link btn btn-link" onClick={() => scrollToSection('presence')}>Presence</button>
+            </li>
+            <li className="nav-item">
               <button className="nav-link btn btn-link" onClick={() => scrollToSection('contact')}>Contact</button>
             </li>
           </ul>
@@ -76,7 +79,7 @@ export default function Navigations({ showResearch, showTestimonials, showBlog, 
           <ul className="navbar-nav ms-auto align-items-center"> {/* BS5: ms-auto pushes right */}
             <li className="nav-item">
               <a
-                href="https://www.linkedin.com/in/YOUR-LINKEDIN-ID/"
+                href="https://www.linkedin.com/in/helen-k-joy-519188a1/"
                 className="li-cta"
                 aria-label="Open LinkedIn profile"
                 target="_blank"

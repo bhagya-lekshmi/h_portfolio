@@ -10,6 +10,7 @@ import Testimonials from './components/Testimonials.jsx';
 import Blog from './components/Blog.jsx';
 import Gallery from './components/Gallery.jsx';
 import Contact from './components/Contact.jsx';
+import Presence from './components/Presence.jsx';
 
 function App() {
   const [showResearch, setShowResearch] = useState(false);
@@ -39,6 +40,7 @@ function App() {
       {showTestimonials && <Testimonials />}
       {showBlog && <Blog />}
       {showGallery && <Gallery />}
+      <Presence />
       <Contact />
     </>
   );

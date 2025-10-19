@@ -582,7 +582,8 @@ xclip
 .sim-btn{
 	line-height: 50px;
 	height: 50px;
-	text-align: center;
+	text-align: center;  
+    background-color: inherit !important;
 	margin-right: auto;
 	margin-left: auto;
 	margin-top: 0px;
@@ -2566,56 +2567,6 @@ select.mobile-device {
       height: 300px;
     }
   }
-  /* --- RESEARCH WORKS SECTION STYLING --- */
-
-/* 1. Style for the Vertical Category List (List Group) */
-.vertical-research-menu .list-group-item-action {
-    border-radius: 0;
-    border: 1px solid #ddd;
-    margin-bottom: -1px; 
-    border-left: 5px solid transparent; 
-    padding: 10px 15px;
-    font-size: 1.1em;
-    color: #333; /* Ensure default text is dark */
-}
-
-/* 2. Style for the ACTIVE/SELECTED category item */
-.vertical-research-menu .list-group-item-action.active {
-    /* PRIMARY COLOR CHANGE HERE */
-    border-left: 5px solid #333333; /* ACCENT: Teal border line */
-    font-weight: bold;
-    color: #fff; /* White text on active background */
-    background-color: #333333; /* BACKGROUND: Teal fill color */
-    border-color: #333333;
-}
-
-/* 3. Style for non-active item hover (optional but recommended) */
-.vertical-research-menu .list-group-item-action:hover {
-    color: #333333; /* Highlight text color on hover */
-    background-color: #f7f7f7; /* Light grey background on hover */
-    border-color: #ccc;
-}
-
-/* --- Keep the rest of the Nested Accordion CSS intact --- */
-
-/* 4. Fix the margin/padding on the content wrapper to align with the list */
-.research-content-wrapper {
-    padding-left: 0; 
-}
-@media (max-width: 767.98px) {
-    .research-content-wrapper {
-        padding-left: 15px; 
-        padding-right: 15px;
-        margin-top: 15px; 
-    }
-}
-
-/* 5. Nested Accordion Styles (from previous steps) */
-.research-article-container { padding-left: 0 !important; padding-right: 0 !important; }
-.research-year-header { background-color: #f8f8f8; padding: 0; }
-.research-article-card { border: none; border-top: 1px solid #eee; margin-bottom: 0; border-radius: 0; }
-.research-year-header a.btn-link, .research-article-header a.btn-link { display: block; width: 100%; text-align: left; padding: 10px 15px; margin: 0; text-decoration: none; color: #333; font-size: 1em; }
-.article-details { padding: 10px 25px; font-size: 0.95em; background-color: #ffffff; border-top: 1px dashed #eee; }
 
 /* Smooth LinkedIn icon style */
 .linkedin-icon {
@@ -2696,3 +2647,253 @@ select.mobile-device {
   .li-cta { width: 32px; height: 32px; }
   .li-cta i { font-size: 0.9rem; }
 }
+#presence {
+  background: linear-gradient(180deg, #0c0c0d 0%, #333333 100%);
+  padding: 150px 0 64px;
+  overflow: hidden;
+}
+
+.dp-heading {
+  color: #ffffff; /* 👈 White title text */
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 24px;
+}
+
+.dp-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 18px;
+}
+
+@media (max-width: 992px) {
+  .dp-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .dp-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.dp-tile {
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.6s ease, background 0.25s ease,
+              box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.dp-tile.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.dp-tile i {
+  font-size: 30px;
+  color: #f3f4f6;
+  opacity: 0.85;
+  transition: color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+}
+
+.dp-tile:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 18px rgba(255, 255, 255, 0.15);
+}
+
+.dp-tile:hover i {
+  transform: scale(1.12);
+  color: #ffffff;
+  opacity: 1;
+}
+
+/* floating animation for visible tiles */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.dp-tile.visible i {
+  animation: floaty 3s ease-in-out infinite;
+}
+/* ---------- Gray Palette tuned for a clean, academic look ----------
+   You can tweak these variables to nudge the tone:
+   --hkj-bg: page background
+   --hkj-card: card surface
+   --hkj-border: separators
+   --hkj-text: primary text
+   --hkj-muted: secondary text
+   --hkj-accent: subtle interactive/hover
+-------------------------------------------------------------------- */
+:root {
+  --hkj-bg: #f7f7f8;
+  --hkj-card: #ffffff;
+  --hkj-border: #e5e7eb;  /* light gray */
+  --hkj-text: #1f2937;    /* slate-800 */
+  --hkj-muted: #6b7280;   /* gray-500/600 */
+  --hkj-accent: #374151;  /* slate-700 */
+}
+
+.research-section {
+  background: var(--hkj-bg);
+  color: var(--hkj-text);
+}
+
+.research-title {
+  color: var(--hkj-text);
+  font-weight: 700;
+}
+
+.research-subtitle {
+  color: var(--hkj-muted);
+}
+
+/* Left menu */
+.vertical-research-menu {
+  background: var(--hkj-card);
+  border: 1px solid var(--hkj-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.research-cat-btn {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--hkj-border);
+  color: var(--hkj-text);
+  text-align: left;
+  padding: 12px 14px;
+  transition: background 0.15s ease, color 0.15s ease;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.research-cat-btn:last-child {
+  border-bottom: none;
+}
+.research-cat-btn:hover {
+  background: #f3f4f6; /* light hover */
+}
+.research-cat-btn.active {
+  background: #eef2f7;
+  color: #999999;;
+  font-weight: 600;
+}
+.list-group-item.active {
+  border-color: transparent;
+}
+.list-group-item {
+    color: #999999;
+}
+
+/* Right content wrapper */
+.research-content-wrapper {
+  background: var(--hkj-card);
+  border: 1px solid var(--hkj-border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+/* Year block (not collapsible) */
+.research-year-block {
+  border-top: 1px solid var(--hkj-border);
+  padding-top: 14px;
+  margin-top: 14px;
+}
+.research-year-block:first-child {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+.research-year-header h5 {
+  color: #999999;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  margin-bottom: 10px;
+}
+
+/* Single-level accordion for articles */
+.research-article {
+  border: 1px solid var(--hkj-border);
+  border-radius: 10px;
+  background: var(--hkj-card);
+  margin-bottom: 10px;
+  overflow: hidden;
+  color: #999999;
+
+}
+
+.research-article-btn {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #999999;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.research-article-btn:hover {
+  background: #f9fafb;
+}
+.research-article.open .research-article-btn {
+  background: #f3f4f6;
+}
+
+.research-article-btn .title {
+  text-align: left;
+  padding-right: 12px;
+
+}
+.research-article-btn .indicator {
+  font-size: 20px;
+  line-height: 1;
+  color: var(--hkj-muted);
+}
+
+/* Panel */
+.research-article-panel {
+  display: none;
+  border-top: 1px solid var(--hkj-border);
+}
+.research-article-panel.show {
+  display: block;
+}
+.panel-inner {
+  padding: 12px 14px;
+}
+
+.meta {
+  color: var(--hkj-muted);
+  margin-bottom: 8px;
+}
+
+.research-description {
+  color: var(--hkj-text);
+}
+.research-description p {
+  margin-bottom: 8px;
+}
+.dp-icon-img {
+  width: 36px;
+  height: 36px;
+  filter: brightness(0) invert(0.9);
+  transition: filter 0.3s ease;
+}
+
+.dp-tile:hover .dp-icon-img {
+  filter: brightness(1) saturate(1.8) hue-rotate(-10deg);
+}
+
