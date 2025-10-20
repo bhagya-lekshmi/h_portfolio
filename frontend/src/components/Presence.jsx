@@ -22,7 +22,7 @@ const LINKS = [
     label: "Scopus",
     type: "image",
     src: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/scopus.svg",
-    url: "https://www.scopus.com/authid/detail.uri?authorId=YOUR_SCOPUS_ID",
+    url: "https://www.scopus.com/authid/detail.uri?authorId=55811681700",
   },
   {
     label: "Medium",

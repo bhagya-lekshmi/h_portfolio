@@ -165,7 +165,7 @@ export default function Research() {
       <div className="container">
         {/* ✅ Title aligned like Gallery */}
         <div className="section-title text-left">
-          <h3>Research</h3>
+          <h3>Portfolio</h3>
         </div>
 
         <div className="row">

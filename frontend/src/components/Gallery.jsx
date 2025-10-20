@@ -67,7 +67,7 @@ const Gallery = ({ setShowGallery }) => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const query = `*[_type == "gallery"] | order(_createdAt desc) {
+    const query = `*[_type == "gallery"] | order(_updatedAt desc) {
       _id,
       title,
       category,

@@ -551,7 +551,6 @@ xclip
 
 .section-title h3 {
     font-size: 38px;
-    font-weight: 500;
     line-height: 62px;
     margin: 0 0 25px;
     padding: 0;
@@ -2785,7 +2784,7 @@ select.mobile-device {
   background: #f3f4f6; /* light hover */
 }
 .research-cat-btn.active {
-  background: #eef2f7;
+  background: #f9fafb;
   color: #999999;;
   font-weight: 600;
 }
@@ -2896,4 +2895,14 @@ select.mobile-device {
 .dp-tile:hover .dp-icon-img {
   filter: brightness(1) saturate(1.8) hue-rotate(-10deg);
 }
+.gallery-single {
+  aspect-ratio: 4 / 3;    /* controls tile shape responsively */
+  overflow: hidden;
+}
 
+.gallery-single img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

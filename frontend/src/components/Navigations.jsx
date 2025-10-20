@@ -50,7 +50,7 @@ export default function Navigations({ showResearch, showTestimonials, showBlog, 
             </li>
             {showResearch && (
               <li className="nav-item">
-                <button className="nav-link btn btn-link" onClick={() => scrollToSection('research')}>Research</button>
+                <button className="nav-link btn btn-link" onClick={() => scrollToSection('research')}>Portfolio</button>
               </li>
             )}
             {showTestimonials && (
