@@ -83,6 +83,50 @@ export default function Research() {
     }
   }, [sortedCategoryKeys, activeCategory]);
 
+  // ----- SCROLL HELPERS -----
+  const getHeaderOffset = () => {
+    const headerEl = document.querySelector('.site-header, header, .navbar, .topbar');
+    return headerEl ? headerEl.getBoundingClientRect().height + 8 : 80;
+  };
+
+  const scrollToCategory = (categoryKey) => {
+    if (!categoryKey) return;
+    const panelId = `category-panel-${categoryKey}`;
+    const el = document.getElementById(panelId);
+    if (!el) return;
+
+    const HEADER_OFFSET = getHeaderOffset();
+    const top = el.getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+
+    // focus the element for keyboard/screen-reader users
+    setTimeout(() => {
+      el.setAttribute('tabindex', '-1');
+      el.focus({ preventScroll: true });
+    }, 350);
+  };
+
+  // When category changes, scroll to it
+  useEffect(() => {
+    if (!activeCategory) return;
+    scrollToCategory(activeCategory);
+  }, [activeCategory]);
+
+  // handle clicking category (also scrolls when clicking the same category)
+  const handleCategoryClick = (categoryKey) => {
+    // close any open article
+    setActiveArticleId(null);
+
+    if (activeCategory === categoryKey) {
+      // already active — ensure we scroll to it
+      scrollToCategory(categoryKey);
+    } else {
+      // change active category — useEffect will scroll
+      setActiveCategory(categoryKey);
+    }
+  };
+  // ----- END SCROLL HELPERS -----
+
   if (loading) return <div>Loading Research Works...</div>;
   if (researchItems.length === 0) return <div>No research works found.</div>;
 
@@ -176,7 +220,7 @@ export default function Research() {
                 <button
                   key={categoryKey}
                   className={`list-group-item list-group-item-action research-cat-btn ${activeCategory === categoryKey ? 'active' : ''}`}
-                  onClick={() => setActiveCategory(categoryKey)}
+                  onClick={() => handleCategoryClick(categoryKey)}
                   type="button"
                 >
                   {getDisplayTitle(categoryKey)}
@@ -191,6 +235,7 @@ export default function Research() {
               {sortedCategoryKeys.map(categoryKey => (
                 <div
                   key={categoryKey}
+                  id={`category-panel-${categoryKey}`}   // id used for scrolling/focus
                   className={`tab-pane fade ${activeCategory === categoryKey ? 'show active' : ''}`}
                   role="tabpanel"
                 >
