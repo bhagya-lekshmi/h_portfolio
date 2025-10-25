@@ -26,18 +26,46 @@ export default function Navigations({ showResearch, showTestimonials, showBlog, 
       <div className="container">
 
         {/* Left: Logo */}
-        <a className="navbar-brand" href="#" onClick={() => scrollToSection('home')}>
-          <img className="img-fluid" src="/hkj.png" alt="Logo" style={{ width: 70, height: 70 }} />
+        <a
+          className="navbar-brand"
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToSection('home');
+          }}
+        >
+          <img
+            className="img-fluid"
+            src="/hkj.png"
+            alt="Logo"
+            style={{ width: 70, height: 70 }}
+          />
         </a>
 
-        {/* Toggler */}
-        <button className="navbar-toggler" type="button" onClick={() => setMenuOpen(!menuOpen)}>
-          <i className="fa-solid fa-bars ms-1"></i>
-        </button>
+        {/* Mobile View: Toggler + LinkedIn side by side */}
+        <div className="d-flex align-items-center gap-3 d-lg-none">
+          <a
+            href="https://www.linkedin.com/in/helen-k-joy-519188a1/"
+            className="li-cta"
+            aria-label="Open LinkedIn profile"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Connect on LinkedIn"
+          >
+            <i className="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+          </a>
 
-        {/* Collapse */}
+          <button
+            className="navbar-toggler"
+            type="button"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <i className="fa-solid fa-bars ms-1"></i>
+          </button>
+        </div>
+
+        {/* Collapse (Menu) */}
         <div className={`collapse navbar-collapse ${menuOpen ? 'show' : ''}`} id="navbarResponsive">
-          {/* MAIN MENU — stays left because of me-auto */}
           <ul className="navbar-nav text-uppercase me-auto">
             <li className="nav-item">
               <button className="nav-link btn btn-link" onClick={() => scrollToSection('home')}>Home</button>
@@ -47,6 +75,9 @@ export default function Navigations({ showResearch, showTestimonials, showBlog, 
             </li>
             <li className="nav-item">
               <button className="nav-link btn btn-link" onClick={() => scrollToSection('academics')}>Academics</button>
+            </li>
+            <li className="nav-item">
+              <button className="nav-link btn btn-link" onClick={() => scrollToSection('experience')}>Experience</button>
             </li>
             {showResearch && (
               <li className="nav-item">
@@ -76,7 +107,8 @@ export default function Navigations({ showResearch, showTestimonials, showBlog, 
             </li>
           </ul>
 
-          <ul className="navbar-nav ms-auto align-items-center"> {/* BS5: ms-auto pushes right */}
+          {/* Desktop-only LinkedIn (right end) */}
+          <ul className="navbar-nav ms-auto align-items-center d-none d-lg-flex">
             <li className="nav-item">
               <a
                 href="https://www.linkedin.com/in/helen-k-joy-519188a1/"
@@ -90,7 +122,6 @@ export default function Navigations({ showResearch, showTestimonials, showBlog, 
               </a>
             </li>
           </ul>
-
         </div>
       </div>
     </nav>

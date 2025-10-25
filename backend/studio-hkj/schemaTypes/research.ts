@@ -5,10 +5,13 @@ export default defineType({
   title: 'Research',
   type: 'document',
   fields: [
-    defineField({ name: 'title', title: 'Title', type: 'string' }),
-    defineField({ name: 'subtitle', title: 'Subtitle', type: 'string' }),
-    
-    // --- CATEGORY FIELD (No change) ---
+    defineField({ 
+      name: 'title', 
+      title: 'Title', 
+      type: 'string',
+      validation: Rule => Rule.required().error('Title is required.')
+    }),
+
     defineField({ 
       name: 'category', 
       title: 'Category', 
@@ -27,44 +30,30 @@ export default defineType({
           { title: 'Research Projects', value: 'projects' },
           { title: 'Workshop / FDP / Training Programme', value: 'workshops' },
           { title: 'Awards / Achievements /Others', value: 'awards' },
-          { title: 'copyright', value: 'copyright' },
+          { title: 'Copyrights', value: 'copyright' },
         ],
         layout: 'dropdown'
       },
-      validation: Rule => Rule.required().error('Category is required for grouping.')
+      validation: Rule => Rule.required().error('Category is required.')
     }),
-    
-    // --- CONDITIONAL FIELDS (No change) ---
+
     defineField({ 
-      name: 'periodicalName', 
-      title: 'Publication / Venue Name',
-      type: 'string',
-      hidden: ({ parent }) => !['periodical', 'journals'].includes(parent?.category as string)
+      name: 'date', 
+      title: 'Date', 
+      type: 'string', 
+      description: 'Use YYYY-MM-DD format for proper sorting.',
+      validation: Rule => Rule.required().error('Date is required.')
     }),
-    
-    defineField({ 
-      name: 'periodicity', 
-      title: 'Periodicity', 
-      type: 'string',
-      hidden: ({ parent }) => !['periodical', 'journals'].includes(parent?.category as string)
-    }),
-    
-    // --- Existing Fields (No change) ---
-    defineField({ name: 'location', title: 'Location', type: 'string' }),
-    defineField({ name: 'country', title: 'Country', type: 'string' }),
-    defineField({ name: 'date', title: 'Date', type: 'string', description: 'Use YYYY-MM-DD format for proper sorting.' }),
-    
-    // 💥 UPDATED FIELD: DESCRIPTION to Rich Text Editor (Portable Text)
+
     defineField({ 
       name: 'description', 
       title: 'Description', 
-      type: 'array', // Must be an array
+      type: 'array',
       of: [
         { 
-          type: 'block', // The main text block
+          type: 'block',
           styles: [
             { title: 'Normal', value: 'normal' },
-            // Add other styles like H1, H2 if needed, but 'normal' is often sufficient for descriptions
           ],
           lists: [
             { title: 'Bullet', value: 'bullet' }, 
@@ -72,11 +61,10 @@ export default defineType({
           ],
           marks: {
             decorators: [
-              { title: 'Strong', value: 'strong' }, // Bold
-              { title: 'Emphasis', value: 'em' }     // Italics
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' }
             ],
             annotations: [
-              // Add a field for links if you want to allow hyperlinking text
               {
                 name: 'link',
                 type: 'object',
@@ -92,14 +80,8 @@ export default defineType({
             ]
           }
         },
-        // You can add other types here, like images or code blocks, if your description needs them.
-        // { type: 'image' } 
-      ]
+      ],
+      validation: Rule => Rule.required().error('Description is required.')
     }),
-    
-
-    
-    // --- Slug Field (No change) ---
-    defineField({ name: 'slug', title: 'Slug', type: 'slug', options: { source: 'title', maxLength: 96 } })
   ]
 });

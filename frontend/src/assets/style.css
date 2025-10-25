@@ -665,7 +665,7 @@ xclip
 }
 .ser-icon i{
 	font-size: 50px;
-	color: #333333;
+	color: #777;
 }
 .services-inner-box h2{
 	font-size: 22px;
@@ -2643,7 +2643,7 @@ select.mobile-device {
 
 /* Optional: shrink a tad on very small screens */
 @media (max-width: 575.98px) {
-  .li-cta { width: 32px; height: 32px; }
+  .li-cta { width: 85px; height: 32px; }
   .li-cta i { font-size: 0.9rem; }
 }
 #presence {
@@ -2798,7 +2798,6 @@ select.mobile-device {
 /* Right content wrapper */
 .research-content-wrapper {
   background: var(--hkj-card);
-  border: 1px solid var(--hkj-border);
   border-radius: 12px;
   padding: 16px;
 }
@@ -2808,6 +2807,7 @@ select.mobile-device {
   border-top: 1px solid var(--hkj-border);
   padding-top: 14px;
   margin-top: 14px;
+  margin-bottom: 18px; 
 }
 .research-year-block:first-child {
   border-top: none;
@@ -2905,4 +2905,270 @@ select.mobile-device {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+/* mobile only */
+@media (max-width: 767.98px) {
+  .vertical-research-menu-mobile .mobile-cat-block + .mobile-cat-block { margin-top: 8px; }
+  .vertical-research-menu-mobile .research-cat-btn {
+    width: 100%; display: flex; justify-content: space-between; align-items: center;
+  }
+  .mobile-cat-panel { display: none; padding: 12px 8px; border: 1px solid #eee; border-top: 0; }
+  .mobile-cat-panel.show { display: block; }
+
+  .research-content-wrapper, .tab-content { display: block; }
+}
+
+.li-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  transition: all 0.25s ease;
+}
+
+.li-cta:hover,
+.li-cta:focus {
+  background-color: #0077b5;
+  border-color: #0077b5;
+  color: #fff;
+}
+
+.navbar-toggler {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  padding: 6px 10px;
+  background: transparent;
+  color: #fff;
+}
+
+/* Adjust layout alignment for mobile */
+@media (max-width: 991.98px) {
+  #mainNav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* Section title styling consistent with previous sections */
+#academics .section-title h3 {
+  color: #222;
+  margin-bottom: 8px;
+}
+
+#academics .section-title p {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+/* Timeline structure */
+.timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 10px;
+}
+
+.timeline-rail {
+  grid-column: 1 / 2;
+  border-left: 2px solid #e0e0e0;
+  margin-left: 29px;
+}
+
+.timeline-list {
+  grid-column: 2 / 3;
+  display: grid;
+  gap: 20px;
+}
+
+/* Cards */
+.tl-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  padding: 18px 22px;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.tl-card:hover {
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* Badge */
+.tl-card-badge {
+  position: absolute;
+  left: -75px;
+  top: 18px;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  color: #333;
+}
+
+.tl-card.edu .tl-card-badge {
+  border-color: #777;
+  color: #777;
+}
+
+.tl-card.exp .tl-card-badge {
+  border-color: #777;
+  color: #777;
+}
+
+/* Text */
+.tl-card-title {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 4px;
+  color: #777;
+}
+
+.tl-card-sub {
+  color: #777;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+/* Meta chips */
+.tl-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  font-size: 14px;
+  color: #555;
+}
+
+.tl-meta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tl-meta-chip i {
+  color: #888;
+}
+
+/* Responsive */
+@media (max-width: 767.98px) {
+  .timeline {
+    grid-template-columns: 48px 1fr;
+  }
+
+  .timeline-rail {
+    margin-left: 24px;
+  }
+
+  .tl-card-badge {
+    left: -62px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .tl-card {
+    padding: 14px 16px;
+  }
+}
+/* Legend */
+.timeline-legend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #444;
+  font-weight: 500;
+  font-size: 15px;
+  margin-bottom: 24px;
+  margin-left: 10px;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.legend-dot.edu {
+  background-color: #22c55e; /* green for education */
+}
+
+.legend-dot.exp {
+  background-color: #3b82f6; /* blue for experience */
+}
+
+.legend-gap {
+  width: 24px;
+}
+.tab-pane:focus,
+.tab-pane:focus {
+  outline: 2px solid rgba(0, 0, 0, 0.1);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+#research :focus:not(:focus-visible) { outline: none; }
+/* ---------- Academics: fill viewport but avoid bottom gap ---------- */
+/* Use a CSS variable for nav height so min-height can account for it */
+:root { --nav-height: 80px; }
+
+#academics.section.lb {
+  min-height: calc(100vh - var(--nav-height));
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-top: calc(var(--nav-height) + 40px);
+  padding-bottom: 48px;
+  background: #f6f7f8;
+}
+
+/* allow the inner container to stretch and push footer area down when content is short */
+#academics .timeline-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - var(--nav-height) - 88px);
+}
+
+#academics .timeline-spacer {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+#academics .timeline-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+}
+
+#academics .section-title {
+  margin-bottom: 18px;
+}
+
+@media (max-width: 767.98px) {
+  :root { --nav-height: 64px; }
+  #academics.section.lb {
+    padding-top: calc(var(--nav-height) + 50px);
+    padding-bottom: 32px;
+    min-height: calc(100vh - var(--nav-height));
+  }
+  #academics .timeline-container {
+    min-height: calc(100vh - var(--nav-height) - 64px);
+  }
 }

@@ -5,6 +5,7 @@ import Navigations from './components/Navigations.jsx';
 import Home from './components/Home.jsx';
 import About from './components/About.jsx';
 import Academics from './components/Academics.jsx';
+import Experience from './components/Experience.jsx';
 import Research from './components/Research.jsx';
 import Testimonials from './components/Testimonials.jsx';
 import Blog from './components/Blog.jsx';
@@ -36,6 +37,7 @@ function App() {
       <Home />
       <About />
       <Academics />
+      <Experience />
       {showResearch && <Research />}
       {showTestimonials && <Testimonials />}
       {showBlog && <Blog />}

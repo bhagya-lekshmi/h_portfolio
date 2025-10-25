@@ -17,7 +17,7 @@ export default function Academics() {
   }, []);
 
   return (
-    <div id="academics" className="section lb">
+    <section id="academics" className="section lb">
       <div className="container">
         <div className="section-title text-left">
           <h3>Academics</h3>
@@ -32,13 +32,11 @@ export default function Academics() {
                 <p>
                   {item.institution} <br />
                   {new Date(item.startDate).toLocaleString('default', {
-                    month: 'long',
                     year: 'numeric',
                   })}{' '}
                   -{' '}
                   {item.endDate
                     ? new Date(item.endDate).toLocaleString('default', {
-                        month: 'long',
                         year: 'numeric',
                       })
                     : 'Present'}{' '}
@@ -50,7 +48,7 @@ export default function Academics() {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
