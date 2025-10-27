@@ -2956,16 +2956,122 @@ select.mobile-device {
 }
 
 /* Section title styling consistent with previous sections */
-#academics .section-title h3 {
-  color: #222;
+/* === Grid === */
+#academics .academics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+
+/* === Card === */
+#academics .academic-card {
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #e8e8e8;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: #777; /* default text color */
+}
+
+#academics .academic-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+}
+
+/* === Header === */
+#academics .card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
   margin-bottom: 8px;
 }
 
-#academics .section-title p {
-  color: #666;
-  font-size: 16px;
-  margin-bottom: 30px;
+#academics .card-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  font-size: 18px;
+  color: #555;
 }
+
+#academics .institution {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+  color: #777;
+}
+
+/* === Degree === */
+#academics .degree {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #777;
+  margin: 6px 0 4px 58px; /* aligns with header text */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#academics .degree i {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* === Area of Study === */
+#academics .area-of-study {
+  color: #777;
+  font-size: 0.93rem;
+  margin: 4px 0 0 58px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#academics .area-of-study i {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* === Meta Info === */
+#academics .meta {
+  margin-top: 14px;
+  margin-left: 58px;
+  font-size: 0.9rem;
+  color: #777;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#academics .meta .date,
+#academics .meta .location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#academics .meta i {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  #academics .degree,
+  #academics .area-of-study,
+  #academics .meta {
+    margin-left: 48px;
+  }
+}
+
 
 /* Timeline structure */
 .timeline {
@@ -3122,53 +3228,4 @@ select.mobile-device {
   outline: none;
 }
 #research :focus:not(:focus-visible) { outline: none; }
-/* ---------- Academics: fill viewport but avoid bottom gap ---------- */
-/* Use a CSS variable for nav height so min-height can account for it */
-:root { --nav-height: 80px; }
 
-#academics.section.lb {
-  min-height: calc(100vh - var(--nav-height));
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  padding-top: calc(var(--nav-height) + 40px);
-  padding-bottom: 48px;
-  background: #f6f7f8;
-}
-
-/* allow the inner container to stretch and push footer area down when content is short */
-#academics .timeline-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  min-height: calc(100vh - var(--nav-height) - 88px);
-}
-
-#academics .timeline-spacer {
-  flex: 1 1 auto;
-  min-height: 0;
-}
-
-#academics .timeline-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 22px;
-}
-
-#academics .section-title {
-  margin-bottom: 18px;
-}
-
-@media (max-width: 767.98px) {
-  :root { --nav-height: 64px; }
-  #academics.section.lb {
-    padding-top: calc(var(--nav-height) + 50px);
-    padding-bottom: 32px;
-    min-height: calc(100vh - var(--nav-height));
-  }
-  #academics .timeline-container {
-    min-height: calc(100vh - var(--nav-height) - 64px);
-  }
-}

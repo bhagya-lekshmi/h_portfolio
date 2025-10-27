@@ -14,6 +14,16 @@ export default {
       type: 'string',
     },
     {
+      name: 'areaOfStudy',
+      title: 'Area of Study/Stream',
+      type: 'string',
+    },
+    {
+      name: 'grade',
+      title: 'Grade',
+      type: 'string',
+    },
+    {
       name: 'startDate',
       title: 'Start Date',
       type: 'date',
