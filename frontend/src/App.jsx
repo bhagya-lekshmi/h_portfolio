@@ -20,6 +20,11 @@ function App() {
   const [showGallery, setShowGallery] = useState(false);
 
   useEffect(() => {
+    // Force to top and stay there
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
     client.fetch(`*[_type == "research"][0]`).then(data => setShowResearch(!!data));
     client.fetch(`*[_type == "testimonial"][0]`).then(data => setShowTestimonials(!!data));
     client.fetch(`*[_type == "blog"][0]`).then(data => setShowBlog(!!data));

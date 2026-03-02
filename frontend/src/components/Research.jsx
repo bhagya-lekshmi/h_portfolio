@@ -72,11 +72,13 @@ export default function Research() {
       getDisplayTitle(a).toLowerCase().localeCompare(getDisplayTitle(b).toLowerCase())
     );
   }, [groupedItems]);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   // set initial category
   useEffect(() => {
   if (!isMobile && sortedCategoryKeys.length > 0 && !activeCategory) {
     setActiveCategory(sortedCategoryKeys[0]);
+    setIsInitialLoad(false);
   }
 }, [sortedCategoryKeys, activeCategory, isMobile]);
 
@@ -107,9 +109,6 @@ export default function Research() {
       el.focus({ preventScroll: true });
     }, 350);
   };
-  useEffect(() => {
-    if (activeCategory) scrollToCategory(activeCategory);
-  }, [activeCategory]); // desktop only actually scrolls
 
   const toggleArticle = (id) => {
     setActiveArticleId((prev) => (prev === id ? null : id));
