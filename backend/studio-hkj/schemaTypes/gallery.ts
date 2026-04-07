@@ -22,10 +22,10 @@ export default {
       type: 'string',
       options: {
         list: [
-          { title: 'Career', value: 'career' },
-          { title: 'Travel', value: 'travel' },
-          { title: 'Hobbies', value: 'hobbies' },
-          { title: 'Misc', value: 'misc' }
+          { title: 'Work Vibes', value: 'career' },
+          { title: 'Miles & Moments', value: 'travel' },
+          { title: 'Off Hours', value: 'hobbies' },
+          { title: 'Bits & Pieces', value: 'misc' }
         ], // "All" is handled in frontend by including all
         layout: 'dropdown'
       }

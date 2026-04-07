@@ -19,11 +19,15 @@ const About = () => {
   return (
     <div id="about" className="section wb">
       <div className="container">
+        <div className="section-title text-left">
+          <h3>About Me</h3>
+        </div>
+
         {abouts.map((about, index) => (
           <div className="row" key={index}>
+
             <div className="col-md-6">
               <div className="message-box">
-                <h2>About Me</h2>
                 <p>{about.description}</p>
               </div>
             </div>

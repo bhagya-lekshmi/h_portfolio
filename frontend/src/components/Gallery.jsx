@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { client } from '../client'; // your sanity client setup
+import { client } from '../client'; 
 import imageUrlBuilder from '@sanity/image-url';
 
+// ✅ URL builder
 const builder = imageUrlBuilder(client);
 const urlFor = (source) => builder.image(source).url();
 
+// ✅ Modal component
 const Modal = ({ show, onClose, children }) => {
   if (!show) return null;
 
@@ -32,7 +34,8 @@ const Modal = ({ show, onClose, children }) => {
   );
 };
 
-const GalleryItem = ({ src, alt, category, moreContent }) => {
+// ✅ GalleryItem component
+const GalleryItem = ({ src, alt, category }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -58,12 +61,13 @@ const GalleryItem = ({ src, alt, category, moreContent }) => {
   );
 };
 
-const Gallery = () => {
+// ✅ Gallery component
+const Gallery = ({ setShowGallery }) => {
   const [filterKey, setFilterKey] = useState('all');
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const query = `*[_type == "gallery"] | order(createdAt desc) {
+    const query = `*[_type == "gallery"] | order(_updatedAt desc) {
       _id,
       title,
       category,
@@ -72,8 +76,13 @@ const Gallery = () => {
 
     client.fetch(query).then((data) => {
       setItems(data);
+      if (data.length > 0) {
+        setShowGallery(true);
+      } else {
+        setShowGallery(false);
+      }
     });
-  }, []);
+  }, [setShowGallery]);
 
   const filteredItems = filterKey === 'all' ? items : items.filter(i => i.category === filterKey);
 
@@ -84,17 +93,17 @@ const Gallery = () => {
           <h3>Gallery</h3>
         </div>
 
-        <div className="gallery-menu row">
+        {/* <div className="gallery-menu row">
           <div className="col-md-12">
             <div className="button-group filter-button-group text-left">
-              <button className={filterKey === 'all' ? 'active' : ''} onClick={() => setFilterKey('all')}>All</button>
-              <button className={filterKey === 'career' ? 'active' : ''} onClick={() => setFilterKey('career')}>Career</button>
-              <button className={filterKey === 'travel' ? 'active' : ''} onClick={() => setFilterKey('travel')}>Travel</button>
-              <button className={filterKey === 'hobbies' ? 'active' : ''} onClick={() => setFilterKey('hobbies')}>Hobbies</button>
-              <button className={filterKey === 'misc' ? 'active' : ''} onClick={() => setFilterKey('misc')}>Misc</button>
+              <button className={filterKey === 'all' ? 'active' : ''} onClick={() => setFilterKey('all')}>Every Shot</button>
+              <button className={filterKey === 'career' ? 'active' : ''} onClick={() => setFilterKey('career')}>Work Vibe</button>
+              <button className={filterKey === 'travel' ? 'active' : ''} onClick={() => setFilterKey('travel')}>Miles & Moments</button>
+              <button className={filterKey === 'hobbies' ? 'active' : ''} onClick={() => setFilterKey('hobbies')}>Off Hours</button>
+              <button className={filterKey === 'misc' ? 'active' : ''} onClick={() => setFilterKey('misc')}>Bits & Pieces</button>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="gallery-list row">
           {filteredItems.map((item) => (
@@ -111,4 +120,5 @@ const Gallery = () => {
   );
 };
 
+// ✅ Export default
 export default Gallery;

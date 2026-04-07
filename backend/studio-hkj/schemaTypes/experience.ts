@@ -1,6 +1,6 @@
 export default {
-  name: 'academic',
-  title: 'Academic',
+  name: 'experience',
+  title: 'Experience',
   type: 'document',
   fields: [
     {
@@ -11,16 +11,6 @@ export default {
     {
       name: 'institution',
       title: 'Institution',
-      type: 'string',
-    },
-    {
-      name: 'areaOfStudy',
-      title: 'Area of Study/Stream',
-      type: 'string',
-    },
-    {
-      name: 'grade',
-      title: 'Grade',
       type: 'string',
     },
     {
